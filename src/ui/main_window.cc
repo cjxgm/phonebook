@@ -8,22 +8,23 @@ MainWindow::MainWindow()
 	//////// create contents ////////
 	set_default_size(800, 600);
 	set_position(Gtk::WIN_POS_CENTER);
+	add(vbox);
+	vbox.show();
 
 	// headerbar and its friends
 	set_titlebar(bar);
 	bar.set_show_close_button();
-	bar.set_title("click on the image to copy color info");
-	bar.set_subtitle("move your mouse on the image to show color info");
+	bar.set_title("phonebook");
+	bar.set_has_subtitle(false);
 	bar.show();
 
-	bar.pack_start(btn_prev);
-	btn_prev.show();
+	bar.pack_start(btn_add);
+	btn_add.show();
 
-	bar.pack_start(btn_next);
-	btn_next.show();
+	vbox.pack_start(contact_ibar, false, false, 0);
 
-	bar.pack_start(btn_color);
-	btn_color.set_active();
-	btn_color.show();
+	btn_add.signal_clicked().connect([&]() {
+		contact_ibar.show();
+	});
 }
 
