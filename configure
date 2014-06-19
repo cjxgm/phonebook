@@ -12,7 +12,7 @@ my $dest = "phonebook";
 my $test_arg = "";
 my @libs = qw(gtkmm-3.0);
 my %installs = (
-	"phonebook.desktop" => "/usr/share/applications"
+	"res/phonebook.desktop" => "/usr/share/applications"
 );
 
 
@@ -119,6 +119,6 @@ EOF
 	close $makefile
 }
 
-&gen_dep(".");
+&gen_dep("src");
 &write_makefile;
 

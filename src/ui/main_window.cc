@@ -6,7 +6,7 @@ using namespace std;
 MainWindow::MainWindow()
 {
 	//////// create contents ////////
-	set_default_size(1020, 740);
+	set_default_size(800, 600);
 	set_position(Gtk::WIN_POS_CENTER);
 
 	// headerbar and its friends

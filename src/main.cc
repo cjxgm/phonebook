@@ -1,5 +1,5 @@
-#include "gtkmm.hh"
-#include "main_window.hh"
+#include "ui/gtkmm.hh"
+#include "ui/main_window.hh"
 
 int main(int argc, char* argv[])
 {
