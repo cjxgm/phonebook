@@ -1,0 +1,12 @@
+[Desktop Entry]
+Type=Application
+Name=phonebook
+GenericName=misc
+Comment=contacts
+Icon=phonebook
+TryExec=phonebook
+Exec=phonebook %F
+Terminal=false
+NoDisplay=false
+Categories=GTK;
+MimeType=application/phonebook;
