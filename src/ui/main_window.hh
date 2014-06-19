@@ -1,6 +1,7 @@
 #pragma once
 #include "gtkmm.hh"
 #include "contact_input_bar.hh"
+#include "contact_view.hh"
 #include <string>
 using namespace std;
 
@@ -11,6 +12,7 @@ class MainWindow : public Gtk::Window
 
 	Gtk::Box vbox{Gtk::ORIENTATION_VERTICAL, 0};
 	ContactInputBar contact_ibar{};
+	ContactView contact_view{};
 
 public:
 	MainWindow();

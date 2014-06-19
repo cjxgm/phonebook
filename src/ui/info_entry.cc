@@ -11,9 +11,39 @@ Gdk::RGBA InfoEntry::color(const string& name)
 	return clr;
 }
 
-InfoEntry::InfoEntry()
+bool InfoEntry::validate(const string& s)
 {
-	override_color(color("info_fg_color"));
-	override_background_color(color("info_bg_color"));
+	if (_validator) return _validator(s);
+	return true;
+}
+
+void InfoEntry::theme(const string& name)
+{
+	auto info_fg = color(name + "_fg_color");
+	auto info_bg = color(name + "_bg_color");
+	override_symbolic_color("text_color", info_fg);
+	override_symbolic_color("bg_color", info_fg);
+	override_symbolic_color("base_color", info_bg);
+}
+
+InfoEntry::InfoEntry(const string& placeholder)
+{
+	set_placeholder_text(placeholder);
+	theme("info");
+
+	signal_changed().connect([&]() {
+		validate();
+	});
+}
+
+bool InfoEntry::validate()
+{
+	if (validate(get_text())) {
+		theme("info");
+		return true;
+	}
+
+	theme("error");
+	return false;
 }
 

@@ -5,10 +5,11 @@ using namespace std;
 
 ContactInputBar::ContactInputBar()
 {
-	set_message_type(Gtk::MESSAGE_INFO);
-	set_show_close_button();
-	dynamic_cast<Gtk::Box*>(get_content_area())->pack_start(hbox, false, false, 0);
+	add(hbox);
 	hbox.show();
+
+	auto context = get_style_context();
+	context->add_class("selection-mode");
 
 	hbox.pack_start(label_name);
 	hbox.pack_start(entry_name);
@@ -19,10 +20,16 @@ ContactInputBar::ContactInputBar()
 	label_phone.show();
 	entry_phone.show();
 
+	entry_name.validator([&](const string& s) {
+		return (s != "");
+	});
+
+	/*
 	signal_response().connect([&](int response_id) {
 		switch (response_id) {
 			case Gtk::RESPONSE_CLOSE: hide(); break;
 		}
 	});
+	*/
 }
 

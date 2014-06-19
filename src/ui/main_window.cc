@@ -21,10 +21,14 @@ MainWindow::MainWindow()
 	bar.pack_start(btn_add);
 	btn_add.show();
 
-	vbox.pack_start(contact_ibar, false, false, 0);
-
 	btn_add.signal_clicked().connect([&]() {
+		set_titlebar(contact_ibar);
 		contact_ibar.show();
 	});
+
+
+	//vbox.pack_start(contact_ibar, false, false, 0);
+	vbox.pack_start(contact_view);
+	contact_view.show();
 }
 
