@@ -30,6 +30,7 @@ MainWindow::MainWindow()
 
 	ibar.signal_ok().connect([&](const string& name, const string& phone) {
 		set_titlebar(bar);
+		clist.add(name, phone);
 		cout << "+ " << name << " = " << phone << endl;	// TODO
 	});
 
