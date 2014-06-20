@@ -11,7 +11,11 @@ bool InfoEntry::validate(const string& s)
 
 void InfoEntry::theme(const string& name)
 {
-	get_style_context()->add_class(name);
+	static string last_name;
+	auto context = get_style_context();
+	context->remove_class(last_name);
+	context->add_class(name);
+	last_name = name;
 }
 
 InfoEntry::InfoEntry(const string& placeholder)
