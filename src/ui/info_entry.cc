@@ -29,7 +29,7 @@ void InfoEntry::theme(const string& name)
 InfoEntry::InfoEntry(const string& placeholder)
 {
 	set_placeholder_text(placeholder);
-	theme("info");
+	reset();
 
 	signal_changed().connect([&]() {
 		validate();
@@ -45,5 +45,11 @@ bool InfoEntry::validate()
 
 	theme("error");
 	return false;
+}
+
+void InfoEntry::reset()
+{
+	set_text("");
+	theme("info");
 }
 

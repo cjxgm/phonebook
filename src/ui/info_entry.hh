@@ -18,5 +18,6 @@ public:
 	InfoEntry(const string& placeholder="");
 	void validator(Validator _validator) { this->_validator = _validator; }
 	bool validate();
+	void reset();
 };
 
