@@ -101,9 +101,9 @@ makefile: configure
 	./configure
 build:
 	\@echo -e "\e[0;32mmaking" "\e[1;35mdirectories\e[0m"
-	mkdir build
+	mkdir -p build
 EOF
-	print $makefile "$_:\n\tmkdir $_\n" for @dirs;
+	print $makefile "$_:\n\tmkdir -p $_\n" for @dirs;
 	print $makefile "\n";
 	print $makefile <<EOF for keys %targets;
 $_:$targets{$_} makefile

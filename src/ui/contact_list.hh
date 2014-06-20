@@ -13,6 +13,8 @@ class ContactList : public Gtk::ListBox
 
 public:
 	ContactList();
+
+	using ListBox::add;	// suppress warnings of hiding virtual function
 	void add(const string& name, const string& phone);
 };
 
