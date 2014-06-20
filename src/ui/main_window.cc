@@ -27,6 +27,15 @@ MainWindow::MainWindow()
 		contact_ibar.show();
 	});
 
+	contact_ibar.signal_add().connect([&](const string& name, const string& phone) {
+		set_titlebar(bar);
+		cout << "+ " << name << " = " << phone << endl;	// TODO
+	});
+
+	contact_ibar.signal_cancel().connect([&]() {
+		set_titlebar(bar);
+	});
+
 
 	//vbox.pack_start(contact_ibar, false, false, 0);
 	vbox.pack_start(contact_view);
