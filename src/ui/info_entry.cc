@@ -3,14 +3,6 @@
 using namespace std;
 
 
-Gdk::RGBA InfoEntry::color(const string& name)
-{
-	auto style = get_style_context();
-	Gdk::RGBA clr;
-	style->lookup_color(name, clr);
-	return clr;
-}
-
 bool InfoEntry::validate(const string& s)
 {
 	if (_validator) return _validator(s);
@@ -19,11 +11,7 @@ bool InfoEntry::validate(const string& s)
 
 void InfoEntry::theme(const string& name)
 {
-	auto info_fg = color(name + "_fg_color");
-	auto info_bg = color(name + "_bg_color");
-	override_symbolic_color("text_color", info_fg);
-	override_symbolic_color("bg_color", info_fg);
-	override_symbolic_color("base_color", info_bg);
+	get_style_context()->add_class(name);
 }
 
 InfoEntry::InfoEntry(const string& placeholder)

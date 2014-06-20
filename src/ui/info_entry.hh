@@ -12,7 +12,6 @@ class InfoEntry : public Gtk::Entry
 	Validator _validator;
 	SignalCancel _signal_cancel;
 
-	Gdk::RGBA color(const string& name);
 	void theme(const string& name);
 	bool validate(const string& s);
 
