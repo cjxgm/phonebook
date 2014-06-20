@@ -4,6 +4,18 @@
 using namespace std;
 
 
+void ContactInputBar::confirm()
+{
+	if (!entry_name.validate()) return entry_name.grab_focus();
+	if (!entry_phone.validate()) return entry_phone.grab_focus();
+	string name = entry_name.get_text();
+	string phone = entry_phone.get_text();
+	entry_name.reset();
+	entry_phone.reset();
+	hide();
+	_signal_ok.emit(name, phone);
+}
+
 ContactInputBar::ContactInputBar()
 {
 	set_has_subtitle(false);
@@ -13,11 +25,10 @@ ContactInputBar::ContactInputBar()
 	auto context = get_style_context();
 	context->add_class("selection-mode");
 
-	hbox.pack_start(btn_add);
-	btn_add.show();
+	hbox.pack_start(btn_ok);
+	btn_ok.show();
 
 	pack_end(btn_cancel);
-	//set_custom_title(btn_cancel);
 	btn_cancel.show();
 
 	hbox.pack_start(label_name);
@@ -45,15 +56,8 @@ ContactInputBar::ContactInputBar()
 		return bool(regex_match(phone, regex{"\\d+"}));
 	});
 
-	btn_add.signal_clicked().connect([&]() {
-		if (!entry_name.validate()) return entry_name.grab_focus();
-		if (!entry_phone.validate()) return entry_phone.grab_focus();
-		string name = entry_name.get_text();
-		string phone = entry_phone.get_text();
-		entry_name.reset();
-		entry_phone.reset();
-		hide();
-		_signal_add.emit(name, phone);
+	btn_ok.signal_clicked().connect([&]() {
+		confirm();
 	});
 
 	btn_cancel.signal_clicked().connect([&]() {
@@ -61,6 +65,14 @@ ContactInputBar::ContactInputBar()
 		entry_phone.reset();
 		hide();
 		_signal_cancel.emit();
+	});
+
+	entry_name.signal_activate().connect([&]() {
+		confirm();
+	});
+
+	entry_phone.signal_activate().connect([&]() {
+		confirm();
 	});
 }
 

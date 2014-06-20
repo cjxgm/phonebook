@@ -28,7 +28,7 @@ MainWindow::MainWindow()
 		sbar.set_search_mode(false);
 	});
 
-	ibar.signal_add().connect([&](const string& name, const string& phone) {
+	ibar.signal_ok().connect([&](const string& name, const string& phone) {
 		set_titlebar(bar);
 		cout << "+ " << name << " = " << phone << endl;	// TODO
 	});

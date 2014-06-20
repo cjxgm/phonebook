@@ -8,7 +8,7 @@ class ContactInputBar : public Gtk::HeaderBar
 {
 	Gtk::Box hbox{Gtk::ORIENTATION_HORIZONTAL, 10};
 
-	Gtk::Button btn_add{" + "};
+	Gtk::Button btn_ok{" + "};
 	Gtk::Button btn_cancel{" cancel "};
 
 	Gtk::Label label_name{"name:"};
@@ -18,16 +18,18 @@ class ContactInputBar : public Gtk::HeaderBar
 	InfoEntry entry_phone{"phone number"};
 
 	// void signal_add_callback(const string& name, const string& phone);
-	using SignalAdd = sigc::signal<void, const string&, const string&>;
+	using SignalOk = sigc::signal<void, const string&, const string&>;
 	// void signal_cancel_callback();
 	using SignalCancel = sigc::signal<void>;
 
-	SignalAdd _signal_add;
+	SignalOk _signal_ok;
 	SignalCancel _signal_cancel;
+
+	void confirm();
 
 public:
 	// accessors
-	inline SignalAdd& signal_add() { return _signal_add; }
+	inline SignalOk& signal_ok() { return _signal_ok; }
 	inline SignalCancel& signal_cancel() { return _signal_cancel; }
 
 	ContactInputBar();
