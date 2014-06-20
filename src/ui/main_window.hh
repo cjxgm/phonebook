@@ -19,6 +19,6 @@ class MainWindow : public Gtk::Window
 public:
 	MainWindow();
 
-	bool on_window_key_press(GdkEventKey* ev);
+	bool on_key_press_event(GdkEventKey* ev);
 };
 

@@ -16,6 +16,14 @@ void ContactInputBar::confirm()
 	_signal_ok.emit(name, phone);
 }
 
+void ContactInputBar::cancel()
+{
+	entry_name.reset();
+	entry_phone.reset();
+	hide();
+	_signal_cancel.emit();
+}
+
 ContactInputBar::ContactInputBar()
 {
 	set_has_subtitle(false);
@@ -61,19 +69,13 @@ ContactInputBar::ContactInputBar()
 	});
 
 	btn_cancel.signal_clicked().connect([&]() {
-		entry_name.reset();
-		entry_phone.reset();
-		hide();
-		_signal_cancel.emit();
+		cancel();
 	});
 
-	entry_name.signal_activate().connect([&]() {
-		confirm();
-	});
-
-	entry_phone.signal_activate().connect([&]() {
-		confirm();
-	});
+	entry_name.signal_activate().connect([&]() { confirm(); });
+	entry_phone.signal_activate().connect([&]() { confirm(); });
+	entry_name.signal_cancel().connect([&]() { cancel(); });
+	entry_phone.signal_cancel().connect([&]() { cancel(); });
 }
 
 void ContactInputBar::show(const string& name)

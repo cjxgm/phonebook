@@ -37,8 +37,6 @@ MainWindow::MainWindow()
 		set_titlebar(bar);
 	});
 
-	signal_key_press_event().connect(sigc::mem_fun(*this, &MainWindow::on_window_key_press));
-
 	vbox.pack_start(sbar, false, false, 0);
 	sbar.show();
 
@@ -48,8 +46,10 @@ MainWindow::MainWindow()
 	add_events(Gdk::KEY_PRESS_MASK);
 }
 
-bool MainWindow::on_window_key_press(GdkEventKey* ev)
+bool MainWindow::on_key_press_event(GdkEventKey* ev)
 {
+	if (Window::on_key_press_event(ev))
+		return true;
 	return sbar.handle_event(ev);
 }
 

@@ -26,6 +26,7 @@ class ContactInputBar : public Gtk::HeaderBar
 	SignalCancel _signal_cancel;
 
 	void confirm();
+	void cancel();
 
 public:
 	// accessors

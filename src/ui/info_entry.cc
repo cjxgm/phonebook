@@ -53,3 +53,12 @@ void InfoEntry::reset()
 	theme("info");
 }
 
+bool InfoEntry::on_key_press_event(GdkEventKey* ev)
+{
+	if (ev->keyval == GDK_KEY_Escape) {
+		_signal_cancel.emit();
+		return true;
+	}
+	return Entry::on_key_press_event(ev);
+}
+
