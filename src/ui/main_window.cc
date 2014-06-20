@@ -40,8 +40,8 @@ MainWindow::MainWindow()
 	vbox.pack_start(sbar, false, false, 0);
 	sbar.show();
 
-	vbox.pack_start(view);
-	view.show();
+	vbox.pack_start(clist);
+	clist.show();
 
 	add_events(Gdk::KEY_PRESS_MASK);
 }

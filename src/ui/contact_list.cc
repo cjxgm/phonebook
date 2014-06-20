@@ -1,4 +1,4 @@
-#include "contact_view.hh"
+#include "contact_list.hh"
 #include <iostream>
 using namespace std;
 

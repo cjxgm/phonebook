@@ -4,7 +4,7 @@
 #include <iostream>
 using namespace std;
 
-class ContactView : public Gtk::TreeView
+class ContactList : public Gtk::TreeView
 {
 	struct Record : public Gtk::TreeModel::ColumnRecord
 	{
@@ -21,7 +21,7 @@ class ContactView : public Gtk::TreeView
 	Record record;
 
 public:
-	ContactView()
+	ContactList()
 	{
 		auto store = Gtk::ListStore::create(record);
 		set_model(store);
