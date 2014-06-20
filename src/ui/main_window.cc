@@ -23,22 +23,25 @@ MainWindow::MainWindow()
 	btn_add.show();
 
 	btn_add.signal_clicked().connect([&]() {
-		set_titlebar(contact_ibar);
-		contact_ibar.show();
+		set_titlebar(ibar);
+		ibar.show();
 	});
 
-	contact_ibar.signal_add().connect([&](const string& name, const string& phone) {
+	ibar.signal_add().connect([&](const string& name, const string& phone) {
 		set_titlebar(bar);
 		cout << "+ " << name << " = " << phone << endl;	// TODO
 	});
 
-	contact_ibar.signal_cancel().connect([&]() {
+	ibar.signal_cancel().connect([&]() {
 		set_titlebar(bar);
 	});
 
 
-	//vbox.pack_start(contact_ibar, false, false, 0);
-	vbox.pack_start(contact_view);
-	contact_view.show();
+	//vbox.pack_start(sbar, false, false, 0);
+	vbox.pack_start(sbar);
+	sbar.show();
+
+	vbox.pack_start(view);
+	view.show();
 }
 
