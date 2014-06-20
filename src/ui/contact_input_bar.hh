@@ -32,6 +32,6 @@ public:
 
 	ContactInputBar();
 
-	void show();	// set focus automatically
+	void show(const string& name = "");	// set focus automatically
 };
 

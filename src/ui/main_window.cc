@@ -24,7 +24,8 @@ MainWindow::MainWindow()
 
 	btn_add.signal_clicked().connect([&]() {
 		set_titlebar(ibar);
-		ibar.show();
+		ibar.show(sbar.get());
+		sbar.set_search_mode(false);
 	});
 
 	ibar.signal_add().connect([&](const string& name, const string& phone) {
@@ -36,12 +37,19 @@ MainWindow::MainWindow()
 		set_titlebar(bar);
 	});
 
+	signal_key_press_event().connect(sigc::mem_fun(*this, &MainWindow::on_window_key_press));
 
-	//vbox.pack_start(sbar, false, false, 0);
-	vbox.pack_start(sbar);
+	vbox.pack_start(sbar, false, false, 0);
 	sbar.show();
 
 	vbox.pack_start(view);
 	view.show();
+
+	add_events(Gdk::KEY_PRESS_MASK);
+}
+
+bool MainWindow::on_window_key_press(GdkEventKey* ev)
+{
+	return sbar.handle_event(ev);
 }
 

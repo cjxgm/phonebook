@@ -64,9 +64,13 @@ ContactInputBar::ContactInputBar()
 	});
 }
 
-void ContactInputBar::show()
+void ContactInputBar::show(const string& name)
 {
 	HeaderBar::show();
-	entry_name.grab_focus();
+	if (name == "") entry_name.grab_focus();
+	else {
+		entry_name.set_text(name);
+		entry_phone.grab_focus();
+	}
 }
 
