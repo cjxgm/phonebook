@@ -12,6 +12,7 @@ class InfoEntry : public Gtk::Entry
 	Validator _validator;
 	SignalCancel _signal_cancel;
 
+	string last_theme;
 	void theme(const string& name);
 	bool validate(const string& s);
 
