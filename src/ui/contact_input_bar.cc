@@ -50,15 +50,17 @@ ContactInputBar::ContactInputBar()
 
 	entry_name.validator([&](const string& s) {
 		string name{s};
-		name = regex_replace(name, regex{"\\s+"}, "");
+		if (regex_match(name, regex{"\\s.*"})) return false;		// initial spaces
+		if (regex_match(name, regex{".*\\s"})) return false;		// trailing spaces
+		if (regex_match(name, regex{".*\\s{2,}.*"})) return false;	// multiple spaces
 		return (name != "");
 	});
 
 	entry_phone.validator([&](const string& s) {
 		string phone{s};
-		if (regex_match(phone, regex{".*\\s"})) return false;
-		if (regex_match(phone, regex{"\\s.*"})) return false;
-		if (regex_match(phone, regex{".*\\s{2,}.*"})) return false;
+		if (regex_match(phone, regex{"\\s.*"})) return false;		// initial spaces
+		if (regex_match(phone, regex{".*\\s"})) return false;		// trailing spaces
+		if (regex_match(phone, regex{".*\\s{2,}.*"})) return false;	// multiple spaces
 		phone = regex_replace(phone, regex{"^\\+"}, "");
 		phone = regex_replace(phone, regex{"\\s+"}, "");
 		return bool(regex_match(phone, regex{"\\d+"}));
