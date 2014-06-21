@@ -8,7 +8,7 @@ MainWindow::MainWindow()
 	//////// create contents ////////
 	set_default_size(800, 600);
 	set_position(Gtk::WIN_POS_CENTER);
-	set_border_width(10);
+
 	add(vbox);
 	vbox.show();
 
