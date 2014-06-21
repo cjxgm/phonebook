@@ -16,6 +16,8 @@ static string markup_format(const string& format, const string& content)
 
 Contact::Contact(const string& name, const string& phone)
 {
+	set_can_focus(false);
+
 	add(box);
 	box.show();
 	box.set_border_width(4);
@@ -26,7 +28,7 @@ Contact::Contact(const string& name, const string& phone)
 
 	box.pack_start(label_phone, Gtk::PACK_EXPAND_WIDGET);
 	label_phone.show();
-	label_phone.set_markup(markup_format("<span color='#888' font_weight='bold'>%s</span>", phone));
+	label_phone.set_markup(markup_format("<span color='#aaa' font_weight='bold'>%s</span>", phone));
 
 	box.pack_start(btn_del, Gtk::PACK_SHRINK);
 	btn_del.show();

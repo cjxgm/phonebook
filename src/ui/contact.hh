@@ -10,7 +10,7 @@ class Contact: public Gtk::ListBoxRow
 
 	Gtk::Label label_name;
 	Gtk::Label label_phone;
-	Gtk::Button btn_del{"delete"};
+	Gtk::Button btn_del{" delete "};
 
 public:
 	Contact(const string& name, const string& phone);

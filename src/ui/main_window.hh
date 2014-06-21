@@ -12,6 +12,8 @@ class MainWindow : public Gtk::Window
 	Gtk::Button btn_add{" + "};
 
 	Gtk::Box vbox{Gtk::ORIENTATION_VERTICAL, 0};
+	Gtk::ScrolledWindow scrolled{};
+
 	ContactInputBar ibar{};
 	ContactSearchBar sbar{};
 	ContactList clist{};

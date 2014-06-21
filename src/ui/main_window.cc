@@ -22,6 +22,17 @@ MainWindow::MainWindow()
 	bar.pack_start(btn_add);
 	btn_add.show();
 
+	vbox.pack_start(sbar, false, false, 0);
+	sbar.show();
+
+	vbox.pack_start(scrolled);
+	scrolled.set_policy(Gtk::POLICY_NEVER, Gtk::POLICY_AUTOMATIC);
+	scrolled.show();
+
+	scrolled.add(clist);
+	clist.show();
+
+
 	btn_add.signal_clicked().connect([&]() {
 		set_titlebar(ibar);
 		ibar.show(sbar.get());
@@ -37,12 +48,6 @@ MainWindow::MainWindow()
 	ibar.signal_cancel().connect([&]() {
 		set_titlebar(bar);
 	});
-
-	vbox.pack_start(sbar, false, false, 0);
-	sbar.show();
-
-	vbox.pack_start(clist);
-	clist.show();
 
 	add_events(Gdk::KEY_PRESS_MASK);
 }
