@@ -6,7 +6,7 @@ using namespace std;
 
 class Contact: public Gtk::ListBoxRow
 {
-	Gtk::ActionBar box;
+	Gtk::Box box{Gtk::ORIENTATION_HORIZONTAL, 10};
 
 	Gtk::Label label_name;
 	Gtk::Label label_phone;
