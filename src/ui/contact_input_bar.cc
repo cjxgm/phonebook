@@ -12,7 +12,6 @@ void ContactInputBar::confirm()
 	string phone = entry_phone.get_text();
 	entry_name.reset();
 	entry_phone.reset();
-	hide();
 	_signal_ok.emit(name, phone);
 }
 
@@ -20,11 +19,11 @@ void ContactInputBar::cancel()
 {
 	entry_name.reset();
 	entry_phone.reset();
-	hide();
 	_signal_cancel.emit();
 }
 
-ContactInputBar::ContactInputBar()
+ContactInputBar::ContactInputBar(const string& ok_text)
+	: btn_ok{ok_text}
 {
 	set_has_subtitle(false);
 	pack_start(hbox);
@@ -80,13 +79,12 @@ ContactInputBar::ContactInputBar()
 	entry_phone.signal_cancel().connect([&]() { cancel(); });
 }
 
-void ContactInputBar::show(const string& name)
+void ContactInputBar::grab_focus(const string& name, const string& phone)
 {
-	HeaderBar::show();
 	if (name == "") entry_name.grab_focus();
-	else {
-		entry_name.set_text(name);
-		entry_phone.grab_focus();
-	}
+	else entry_phone.grab_focus();
+
+	entry_name.set_text(name);
+	entry_phone.set_text(phone);
 }
 

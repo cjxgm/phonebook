@@ -35,17 +35,20 @@ MainWindow::MainWindow()
 
 	btn_add.signal_clicked().connect([&]() {
 		set_titlebar(ibar);
-		ibar.show(sbar.get());
+		ibar.show();
+		ibar.grab_focus(sbar.get());
 		sbar.set_search_mode(false);
 	});
 
 	ibar.signal_ok().connect([&](const string& name, const string& phone) {
+		ibar.hide();
 		set_titlebar(bar);
 		clist.add(name, phone);
 		cout << "+ " << name << " = " << phone << endl;	// TODO
 	});
 
 	ibar.signal_cancel().connect([&]() {
+		ibar.hide();
 		set_titlebar(bar);
 	});
 

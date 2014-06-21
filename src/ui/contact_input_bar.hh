@@ -8,7 +8,7 @@ class ContactInputBar : public Gtk::HeaderBar
 {
 	Gtk::Box hbox{Gtk::ORIENTATION_HORIZONTAL, 10};
 
-	Gtk::Button btn_ok{" + "};
+	Gtk::Button btn_ok;	// initialized later in constructor
 	Gtk::Button btn_cancel{" cancel "};
 
 	Gtk::Label label_name{"name:"};
@@ -33,8 +33,9 @@ public:
 	inline SignalOk& signal_ok() { return _signal_ok; }
 	inline SignalCancel& signal_cancel() { return _signal_cancel; }
 
-	ContactInputBar();
+	ContactInputBar(const string& ok_text = " + ");
 
-	void show(const string& name = "");	// set focus automatically
+	// will set entry's text by the way
+	void grab_focus(const string& name = "", const string& phone="");
 };
 
