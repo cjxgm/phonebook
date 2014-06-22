@@ -4,6 +4,8 @@ using namespace std;
 
 ContactSearchBar::ContactSearchBar()
 {
+	set_show_close_button();
+
 	add(entry);
 	entry.show();
 	entry.set_size_request(400, -1);
