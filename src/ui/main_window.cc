@@ -20,7 +20,19 @@ MainWindow::MainWindow()
 	bar.show();
 
 	bar.pack_start(btn_add);
+	btn_add.set_image_from_icon_name("list-add");
 	btn_add.show();
+
+	bar.pack_end(box_undo_redo);
+	box_undo_redo.show();
+
+	box_undo_redo.pack_end(btn_redo);
+	btn_redo.set_image_from_icon_name("edit-redo");
+	btn_redo.show();
+
+	box_undo_redo.pack_end(btn_undo);
+	btn_undo.set_image_from_icon_name("edit-undo");
+	btn_undo.show();
 
 	vbox.pack_start(sbar, false, false, 0);
 	sbar.show();

@@ -9,7 +9,11 @@ using namespace std;
 class MainWindow : public Gtk::Window
 {
 	Gtk::HeaderBar bar{};
-	Gtk::Button btn_add{" + "};
+	Gtk::Button btn_add{};
+
+	Gtk::Box box_undo_redo{Gtk::ORIENTATION_HORIZONTAL, 0};
+	Gtk::Button btn_undo{};
+	Gtk::Button btn_redo{};
 
 	Gtk::Box vbox{Gtk::ORIENTATION_VERTICAL, 0};
 	Gtk::ScrolledWindow scrolled{};
