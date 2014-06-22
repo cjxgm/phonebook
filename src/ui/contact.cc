@@ -14,7 +14,7 @@ static string markup_format(const string& format, const string& content)
 	return markup;
 }
 
-Contact::Contact(const string& name, const string& phone)
+Contact::Contact(const string& name, const string& phone, SizeGroupPtr sgroup)
 {
 	set(name, phone);
 	set_can_focus(false);
@@ -27,22 +27,30 @@ Contact::Contact(const string& name, const string& phone)
 	box.set_border_width(4);
 	box.show();
 
+
 	box.pack_start(btn_edit, Gtk::PACK_SHRINK);
 	btn_edit.get_style_context()->add_class("default");
 	btn_edit.set_can_focus(false);	// make "default" class persistent
 	btn_edit.show();
 
-	box.pack_start(label_name, Gtk::PACK_SHRINK);
-	label_name.set_alignment(1, 0.5);
-	label_name.show();
-
-	box.pack_start(label_phone, Gtk::PACK_EXPAND_WIDGET);
-	label_phone.set_alignment(0, 0.6);
-	label_phone.show();
+	box.pack_start(box_info, Gtk::PACK_EXPAND_PADDING);
+	box_info.show();
 
 	box.pack_start(btn_del, Gtk::PACK_SHRINK);
 	btn_del.show();
 	btn_del.get_style_context()->add_class("destructive-action");
+
+
+	box_info.pack_start(label_name, Gtk::PACK_SHRINK);
+	sgroup->add_widget(label_name);
+	label_name.set_alignment(1, 0.5);
+	label_name.show();
+
+	box_info.pack_start(label_phone, Gtk::PACK_SHRINK);
+	sgroup->add_widget(label_phone);
+	label_phone.set_alignment(0, 0.6);
+	label_phone.show();
+
 
 	stack.add(ibar, "edit");
 	ibar.show();

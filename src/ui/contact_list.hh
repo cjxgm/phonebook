@@ -10,6 +10,7 @@ class ContactList : public Gtk::ListBox
 {
 	Gtk::Label label_empty{"click \"+\" to add a contact."};
 	Gtk::ListBoxRow* last_row{nullptr};
+	Glib::RefPtr<Gtk::SizeGroup> sgroup;
 
 public:
 	ContactList();
