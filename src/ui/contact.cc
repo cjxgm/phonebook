@@ -1,4 +1,6 @@
 #include "contact.hh"
+#include <regex>
+#include <cstring>
 #include <iostream>
 using namespace std;
 
@@ -93,9 +95,30 @@ void Contact::set(const string& name, const string& phone)
 	label_phone.set_markup(markup_format("<span color='#bbb' font_weight='bold'>%s</span>", phone));
 }
 
+
+// case-insensitive find
+static inline bool case_find(const string& haystack, const string& needle)
+{
+	return strcasestr(haystack.c_str(), needle.c_str());
+}
+
 bool Contact::find(const string& key)
 {
-	auto name = label_name.get_text();
-	return (name.find(key) != decltype(name)::npos);
+	string name = label_name.get_text();
+	string phone = label_phone.get_text();
+
+	if (case_find( name, key)) return true;
+	if (case_find(phone, key)) return true;
+
+	string k = regex_replace(key, regex{"\\s+"}, "");
+	name = regex_replace(name, regex{"\\s+"}, "");
+	if (case_find(name, k)) return true;
+
+	k = regex_replace(k, regex{"^\\+"}, "");
+	phone = regex_replace(phone, regex{"^\\+"}, "");
+	phone = regex_replace(phone, regex{"\\s+"}, "");
+	if (case_find(phone, k)) return true;
+
+	return false;
 }
 
