@@ -52,6 +52,10 @@ MainWindow::MainWindow()
 		set_titlebar(bar);
 	});
 
+	sbar.signal_search().connect([&](const string& key) {
+		clist.search(key);
+	});
+
 	add_events(Gdk::KEY_PRESS_MASK);
 }
 

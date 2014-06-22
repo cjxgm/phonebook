@@ -2,6 +2,12 @@
 #include <iostream>
 using namespace std;
 
+bool ContactList::filter_func(Gtk::ListBoxRow* row)
+{
+	auto contact = dynamic_cast<Contact*>(row);
+	return contact->find(key);
+}
+
 ContactList::ContactList()
 {
 	set_selection_mode(Gtk::SELECTION_SINGLE);
@@ -17,6 +23,8 @@ ContactList::ContactList()
 		}
 		else last_row = row;
 	});
+
+	set_filter_func(mem_fun(*this, &ContactList::filter_func));
 }
 
 void ContactList::add(const string& name, const string& phone)
@@ -28,5 +36,11 @@ void ContactList::add(const string& name, const string& phone)
 	con->signal_delete().connect([=]() {
 		delete con;
 	});
+}
+
+void ContactList::search(const string& key)
+{
+	this->key = key;
+	invalidate_filter();
 }
 

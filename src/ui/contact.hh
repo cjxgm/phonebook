@@ -30,5 +30,6 @@ public:
 
 	Contact(const string& name, const string& phone, SizeGroupPtr sgroup);
 	void set(const string& name, const string& phone);
+	bool find(const string& key);	// for filtering.
 };
 

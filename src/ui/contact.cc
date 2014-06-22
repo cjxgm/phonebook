@@ -93,3 +93,9 @@ void Contact::set(const string& name, const string& phone)
 	label_phone.set_markup(markup_format("<span color='#bbb' font_weight='bold'>%s</span>", phone));
 }
 
+bool Contact::find(const string& key)
+{
+	auto name = label_name.get_text();
+	return (name.find(key) != decltype(name)::npos);
+}
+

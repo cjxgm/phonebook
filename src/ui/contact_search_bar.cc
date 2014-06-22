@@ -7,5 +7,9 @@ ContactSearchBar::ContactSearchBar()
 	add(entry);
 	entry.show();
 	entry.set_size_request(400, -1);
+
+	entry.signal_changed().connect([&]() {
+		_signal_search.emit(entry.get_text());
+	});
 }
 

@@ -8,9 +8,15 @@ class ContactSearchBar : public Gtk::SearchBar
 {
 	Gtk::SearchEntry entry{};
 
+	using SignalSearch = sigc::signal<void, const string&>;
+	// void signal_search_callback(const string& key);
+	SignalSearch _signal_search;
+
 public:
+	// accessors
+	inline SignalSearch& signal_search() { return _signal_search; }
+
 	ContactSearchBar();
 	inline string get() { return entry.get_text(); }
-	//decltype(entry.signal_search_changed()) signal_search_changed() { return entry.signal_search_changed(); }
 };
 
