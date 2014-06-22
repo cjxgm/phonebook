@@ -12,6 +12,8 @@ class Contact: public Gtk::ListBoxRow
 	Gtk::Box box_info{Gtk::ORIENTATION_HORIZONTAL, 10};
 	ContactInputBar ibar{" edit "};
 
+	Gtk::Label empty;
+
 	Gtk::Label label_name;
 	Gtk::Label label_phone;
 	Gtk::Button btn_edit{" edit "};

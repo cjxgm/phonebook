@@ -23,6 +23,9 @@ Contact::Contact(const string& name, const string& phone, SizeGroupPtr sgroup)
 	stack.set_border_width(0);
 	stack.show();
 
+	stack.add(empty, "empty");
+	empty.show();
+
 	stack.add(box, "main");
 	box.set_border_width(4);
 	box.show();
@@ -54,6 +57,12 @@ Contact::Contact(const string& name, const string& phone, SizeGroupPtr sgroup)
 
 	stack.add(ibar, "edit");
 	ibar.show();
+
+
+	signal_map().connect([&]() {
+		stack.set_transition_type(Gtk::STACK_TRANSITION_TYPE_OVER_DOWN);
+		stack.set_visible_child("main");
+	});
 
 	btn_edit.signal_clicked().connect([&]() {
 		stack.set_transition_type(Gtk::STACK_TRANSITION_TYPE_OVER_LEFT);
