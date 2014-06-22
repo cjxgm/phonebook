@@ -10,16 +10,16 @@ void ContactInputBar::confirm()
 	if (!entry_phone.validate()) return entry_phone.grab_focus();
 	string name = entry_name.get_text();
 	string phone = entry_phone.get_text();
+	_signal_ok.emit(name, phone);
 	entry_name.reset();
 	entry_phone.reset();
-	_signal_ok.emit(name, phone);
 }
 
 void ContactInputBar::cancel()
 {
+	_signal_cancel.emit();
 	entry_name.reset();
 	entry_phone.reset();
-	_signal_cancel.emit();
 }
 
 ContactInputBar::ContactInputBar(const string& ok_text)
