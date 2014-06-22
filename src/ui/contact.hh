@@ -16,7 +16,14 @@ class Contact: public Gtk::ListBoxRow
 	Gtk::Button btn_edit{" edit "};
 	Gtk::Button btn_del{" delete "};
 
+	using SignalDelete = sigc::signal<void>;
+	// void signal_delete_callback();
+	SignalDelete _signal_delete;
+
 public:
+	// accessors
+	inline SignalDelete& signal_delete() { return _signal_delete; }
+
 	Contact(const string& name, const string& phone);
 	void set(const string& name, const string& phone);
 };

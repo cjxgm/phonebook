@@ -25,7 +25,9 @@ void ContactInputBar::cancel()
 ContactInputBar::ContactInputBar(const string& ok_text)
 	: btn_ok{ok_text}
 {
-	set_has_subtitle(false);
+	Gtk::Label empty;
+	set_custom_title(empty);
+
 	pack_start(hbox);
 	hbox.show();
 

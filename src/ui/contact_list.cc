@@ -22,5 +22,9 @@ void ContactList::add(const string& name, const string& phone)
 	Contact* con = new Contact{name, phone};
 	con->show();
 	append(*con);
+
+	con->signal_delete().connect([=]() {
+		delete con;
+	});
 }
 

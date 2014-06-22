@@ -6,7 +6,7 @@ using namespace std;
 MainWindow::MainWindow()
 {
 	//////// create contents ////////
-	set_default_size(800, 600);
+	set_default_size(640, 600);
 	set_position(Gtk::WIN_POS_CENTER);
 
 	add(vbox);

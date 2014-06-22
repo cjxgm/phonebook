@@ -54,7 +54,8 @@ Contact::Contact(const string& name, const string& phone)
 	});
 
 	btn_del.signal_clicked().connect([&]() {
-		// TODO
+		// TODO: do the deletion on data
+		_signal_delete.emit();
 	});
 
 	ibar.signal_ok().connect([&](const string& name, const string& phone) {
