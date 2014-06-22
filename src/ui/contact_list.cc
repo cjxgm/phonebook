@@ -12,6 +12,7 @@ ContactList::ContactList()
 {
 	set_selection_mode(Gtk::SELECTION_SINGLE);
 	set_placeholder(label_empty);
+	label_empty.set_markup("<span color='#aaa'>click </span><big><b><span color='#fff'>+</span></b></big><span color='#aaa'> to add a contact.</span>");
 	label_empty.show();
 
 	sgroup = Gtk::SizeGroup::create(Gtk::SIZE_GROUP_HORIZONTAL);
