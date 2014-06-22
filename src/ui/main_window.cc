@@ -28,10 +28,12 @@ MainWindow::MainWindow()
 
 	box_undo_redo.pack_end(btn_redo);
 	btn_redo.set_image_from_icon_name("edit-redo");
+	btn_redo.set_sensitive(false);
 	btn_redo.show();
 
 	box_undo_redo.pack_end(btn_undo);
 	btn_undo.set_image_from_icon_name("edit-undo");
+	btn_undo.set_sensitive(false);
 	btn_undo.show();
 
 	vbox.pack_start(sbar, false, false, 0);
