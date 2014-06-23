@@ -3,6 +3,7 @@
 #include "../path.hh"
 #include "data.hh"
 #include <vector>
+#include <iostream>
 using namespace std;
 
 namespace nde
@@ -23,10 +24,18 @@ namespace nde
 			File file{path::project()};
 
 		public:
+			void read();
+
 			void append(Action* action, bool write=true);
 
 			inline bool undoable() { return (action_pos >            0  ); }
 			inline bool redoable() { return (action_pos < actions.size()); }
+
+			void print()
+			{
+				for (auto& data: datas)
+					cout << data.name << " " << data.phone << endl;
+			}
 		};
 	};
 };

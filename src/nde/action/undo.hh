@@ -6,11 +6,6 @@ namespace nde
 {
 	namespace action
 	{
-		struct Undo: public Type
-		{
-		};
-
-		Wrapper<Undo> undo{"undo"};
 	};
 };
 

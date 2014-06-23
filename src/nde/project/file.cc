@@ -1,5 +1,9 @@
 #include "file.hh"
 
+#include <iostream>
+using namespace std;
+
+
 static void find_and_replace(string& str,
 		const string& what, const string& replacement)
 {
@@ -15,18 +19,10 @@ namespace nde
 	namespace project
 	{
 		File::File(const string& filename)
+			: fin{filename, ios::in}, fout{filename, ios::app}
 		{
 			struct bad_filename {};
-
-			fs.open(filename, ios::in);
-			if (fs.is_open()) fs.close();
-			else {
-				fs.open(filename, ios::out);
-				if (!fs.is_open()) throw bad_filename{};
-				fs.close();
-			}
-
-			fs.open(filename, ios::in | ios::app);
+			if (!fout.is_open()) throw bad_filename{};
 		}
 
 
@@ -37,11 +33,11 @@ namespace nde
 			string s;
 			char c;
 
-			while (fs.get(c) && (c == ' ' || c == '\t' || c == '\n')) {}
+			while (fin.get(c) && (c == ' ' || c == '\t' || c == '\n')) {}
 			if (c != '"') throw bad_string_literal{};
 
-			while (fs.get(c) && c != '"') {
-				if (c == '\\' && !fs.get(c))
+			while (fin.get(c) && c != '"') {
+				if (c == '\\' && !fin.get(c))
 					throw bad_string_literal{};
 				s += c;
 			}
@@ -55,39 +51,39 @@ namespace nde
 			string escaped{s};
 			find_and_replace(escaped, "\\", "\\\\");
 			find_and_replace(escaped, "\"", "\\\"");
-			fs << " \"" << escaped << "\"";
+			fout << " \"" << escaped << "\"";
 		}
 
 
 		int File::int_literal()
 		{
 			int x;
-			fs >> x;
+			fin >> x;
 			return x;
 		}
 
 		void File::int_literal(int x)
 		{
-			fs << " " << x;
+			fout << " " << x;
 		}
 
 
 		string File::atom()
 		{
 			string s;
-			fs >> s;
+			fin >> s;
 			return s;
 		}
 
 		void File::atom(const string& s)
 		{
-			fs << s;
+			fout << s;
 		}
 
 
 		void File::eol()
 		{
-			fs << endl;
+			fout << endl;
 		}
 	};
 };

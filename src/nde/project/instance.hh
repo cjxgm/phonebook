@@ -5,7 +5,7 @@ namespace nde
 {
 	namespace project
 	{
-		extern Type instance;
+		Type* instance();
 	};
 };
 

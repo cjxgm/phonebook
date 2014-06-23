@@ -46,7 +46,7 @@ namespace nde
 			template <class ...Ts>
 			inline void operator()(Ts... args)
 			{
-				project::instance.append(new Action{args...});
+				project::instance()->append(new Action{args...});
 			}
 
 			Wrapper(const string& name)
