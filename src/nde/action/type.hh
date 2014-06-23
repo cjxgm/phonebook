@@ -1,6 +1,9 @@
 #pragma once
 #include "../factory.hh"
 #include "../project/file.hh"
+#include "../project/data.hh"
+#include <vector>
+using namespace std;
 
 namespace nde
 {
@@ -8,16 +11,22 @@ namespace nde
 	{
 		struct Type
 		{
-			virtual void undo() = 0;
-			virtual void invoke() = 0;
+			using File = project::File;
+			using Data = project::Data;
+			using Datas = vector<Data>;
 
-			virtual void read(nde::project::File& file) = 0;
-			virtual void write(nde::project::File& file) = 0;
+			virtual void undo(Datas& datas) = 0;
+			virtual void invoke(Datas& datas) = 0;
+
+			virtual void read(File& file) = 0;
+			virtual void write(File& file) = 0;
 
 			virtual ~Type() {}
 		};
 
 		extern nde::Factory<Type> factory;
 	};
+
+	using Actions = vector<action::Type>;
 };
 
