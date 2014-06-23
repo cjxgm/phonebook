@@ -12,7 +12,10 @@ namespace nde
 			fstream fs;
 
 		public:
-			File(const string& filename) : fs{filename} {}
+			File(const string& filename);
+
+			inline void flush() { fs.flush(); }
+			inline operator bool() { return fs; }
 
 			// string io
 			string string_literal();
