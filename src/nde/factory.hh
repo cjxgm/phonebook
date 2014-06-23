@@ -37,14 +37,15 @@ usage:
 
 			nde::Factory<Shape> shape_factory;
 
-	3.	use the nde::Maker<T> proxy template class to create
-		nde::Factory<Base>::Maker<T> class and add it to the factory.
+	3.	use the nde::Maker<T> proxy template class to create a new
+		nde::Factory<Base>::Maker<T> object and add it to the factory.
 
 			nde::Maker<Circle> maker_circle(shape_factory, "circle");
 			nde::Maker<Box>    maker_box   (shape_factory, "box"   );
 
 		so, we registered Circle with string name "circle" and registered
-		Box with string name "box".
+		Box with string name "box". the proxy can be deleted, but the
+		maker created by it will remain persistent in memory.
 
 	4.	now, we can create objects of Circle or Box by using the
 		corresponding string name.
@@ -64,7 +65,8 @@ caution:
 		need to.
 
 	*	makers created by nde::Maker<T> will never be correctly deleted,
-		because they never need to.
+		because they never need to. the maker proxy itself can be safely
+		deleted.
 */
 
 namespace nde

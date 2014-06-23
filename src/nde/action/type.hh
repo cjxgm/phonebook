@@ -1,4 +1,5 @@
 #pragma once
+#include "../factory.hh"
 
 namespace nde
 {
@@ -7,6 +8,8 @@ namespace nde
 		struct Type
 		{
 		};
+
+		extern nde::Factory<Type> factory;
 	};
 };
 

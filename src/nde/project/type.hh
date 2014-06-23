@@ -7,6 +7,7 @@ namespace nde
 	{
 		struct Type
 		{
+			void append(action::Type* action) {}
 		};
 	};
 };
