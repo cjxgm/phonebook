@@ -1,0 +1,8 @@
+create "asd" "123"
+create "asd" "234"
+create "hello world" "33"
+create "\"yes\\\"" "33 44"
+remove 1
+remove 2
+remove 0
+remove 0

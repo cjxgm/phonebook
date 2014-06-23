@@ -1,6 +1,8 @@
 #pragma once
 #include "type.hh"
 #include "wrapper.hh"
+#include <functional>
+using namespace std;
 
 namespace nde
 {
@@ -8,15 +10,16 @@ namespace nde
 	{
 		struct Remove: public Type
 		{
-			// insert at pos
-			static void undo_callback(size_t pos, const string& name, const string& phone);
-			// remove at pos
-			static void invoke_callback(size_t pos);
+			using UndoCb = function<void(size_t pos, const string& name, const string& phone)>;
+			using InvokeCb = function<void(size_t pos)>;
+
+			static UndoCb undo_cb;
+			static InvokeCb invoke_cb;
 
 			void undo(Datas& datas) override
 			{
 				datas.insert(datas.begin() + pos, Data{name, phone});
-				undo_callback(pos, name, phone);
+				undo_cb(pos, name, phone);
 			}
 
 			void invoke(Datas& datas) override
@@ -24,7 +27,7 @@ namespace nde
 				name = datas[pos].name;
 				phone = datas[pos].phone;
 				datas.erase(datas.begin() + pos);
-				invoke_callback(pos);
+				invoke_cb(pos);
 			}
 
 			void read(File& file) override
@@ -47,7 +50,7 @@ namespace nde
 			size_t pos;
 		};
 
-		Wrapper<Remove> remove{"remove"};
+		extern Wrapper<Remove> remove;
 	};
 };
 
