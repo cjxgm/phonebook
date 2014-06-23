@@ -1,17 +1,14 @@
 #include "path.hh"
 
-static string root;
 
-
-void nde::path::root(const string& path)
+string nde::path::root()
 {
-	::root = path;
+	return "./";
 }
 
-string project()
+string nde::path::project()
 {
-	string path{::root + "/" + "nde:phonebook"};
-	return path;
+	return root() + "nde:phonebook";
 }
 
 

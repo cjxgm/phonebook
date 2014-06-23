@@ -6,7 +6,7 @@ namespace nde
 {
 	namespace path
 	{
-		void root(const string& path);
+		string root();
 		string project();
 	};
 }

@@ -6,6 +6,11 @@ namespace nde
 {
 	namespace action
 	{
+		struct Create: public Type
+		{
+		};
+
+		Wrapper<Create> create{"create"};
 	};
 };
 
