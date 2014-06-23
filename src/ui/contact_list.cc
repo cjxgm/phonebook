@@ -34,7 +34,7 @@ void ContactList::add(const string& name, const string& phone)
 	con->show();
 	append(*con);
 
-	con->signal_delete().connect([=]() {
+	con->signal_remove().connect([=]() {
 		delete con;
 	});
 }

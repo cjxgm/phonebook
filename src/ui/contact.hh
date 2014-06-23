@@ -17,16 +17,16 @@ class Contact: public Gtk::ListBoxRow
 	Gtk::Label label_name;
 	Gtk::Label label_phone;
 	Gtk::Button btn_edit{" edit "};
-	Gtk::Button btn_del{" delete "};
+	Gtk::Button btn_del{" remove "};
 
 	using SizeGroupPtr = Glib::RefPtr<Gtk::SizeGroup>;
-	using SignalDelete = sigc::signal<void>;
-	// void signal_delete_callback();
-	SignalDelete _signal_delete;
+	using SignalRemove = sigc::signal<void>;
+	// void signal_remove_callback();
+	SignalRemove _signal_remove;
 
 public:
 	// accessors
-	inline SignalDelete& signal_delete() { return _signal_delete; }
+	inline SignalRemove& signal_remove() { return _signal_remove; }
 
 	Contact(const string& name, const string& phone, SizeGroupPtr sgroup);
 	void set(const string& name, const string& phone);

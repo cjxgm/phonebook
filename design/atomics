@@ -1,0 +1,109 @@
+
+# comment
+#comment
+create string{name} string{phone}
+remove int{id}
+edit int{id} string{name} string{phone}
+undo
+redo
+
+
+
+-> read head
+-] write head
+0 create "eXerigumo Clanjor" "+86 133 222 3333" #0
+1 create "eXerigumo Clanjor" "+86 133 222 3333" #1
+2 create "eXerigumo Clanjor" "+86 133 222 3333" #2
+3 create "eXerigumo Clanjor" "+86 133 222 3333" #3
+4 remove 2
+5 edit 2 "cjxgm" "+1 133 222 3333"
+6 create "cjxgm2" "+86 133 222 3333" #3
+7 undo
+8 undo
+9 undo
+a create "cjxgm2" "+86 133 222 3333" #4
+b undo
+c undo
+d undo
+-> -]
+
+0
+1
+2
+3
+4
+5
+6
+7  6
+>8  5
+9  4
+a
+b  a
+c  9
+d  8
+e
+f
+-
+
+Action
+
+nde::project::Type
+nde::action::Type
+nde::action::Create : public Type
+nde::action::Remove : public Type
+nde::action::Edit : public Type
+nde::action::Undo : public Type
+nde::action::Redo : public Type
+
+class Create : public Type
+{
+	using CString = const string;
+	Create(CString& name, CString& phone)
+	{
+	};
+};
+
+static Maker<Create> maker(action::factory(), "create");
+
+template <class Action>
+struct Wrapper
+{
+	using ActionPtr = RefPtr<Action>;
+
+	template <class ...Ts>
+	inline void operator()(Ts... args)
+	{
+		project::instance.append(ActionPtr{
+			new Action{project::instance, args...}
+		});
+	}
+};
+
+Wrapper<Create> create;	// create("name", "phone")
+Wrapper<Remove> remove;	// remove(2)
+Wrapper<Edit> edit;		// edit(2, "name", "phone");
+Wrapper<Undo> undo;
+Wrapper<Redo> redo;
+
+// create
+nde::action::create("name", "phone");
+update_undo_redo();
+
+// undo
+nde::action::undo();
+
+void update_undo_redo()
+{
+	btn_undo.set_sensitive(nde::project::instance.undoable());
+	btn_redo.set_sensitive(nde::project::instance.redoable());
+}
+
+project::instance
+nde::project
+nde::action
+nde::storage::Type
+
+nde/factory.hh
+
+Factory
+

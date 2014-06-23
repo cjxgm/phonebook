@@ -73,8 +73,8 @@ Contact::Contact(const string& name, const string& phone, SizeGroupPtr sgroup)
 	});
 
 	btn_del.signal_clicked().connect([&]() {
-		// TODO: do the deletion on data
-		_signal_delete.emit();
+		// TODO: do the removal on data
+		_signal_remove.emit();
 	});
 
 	ibar.signal_ok().connect([&](const string& name, const string& phone) {
