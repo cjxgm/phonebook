@@ -11,6 +11,7 @@ namespace nde
 			string name;
 			string phone;
 
+			Data() {}
 			Data(const string& name, const string& phone)
 				: name{name}, phone{phone}
 			{

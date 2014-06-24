@@ -1,5 +1,5 @@
 #include "file.hh"
-#include <unistd.h>
+#include <cstdio>
 
 #include <iostream>
 using namespace std;
@@ -42,7 +42,7 @@ namespace nde
 		void File::reset()
 		{
 			close();
-			unlink(filename.c_str());
+			remove(filename.c_str());
 			open();
 		}
 

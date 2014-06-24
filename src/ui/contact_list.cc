@@ -87,6 +87,9 @@ ContactList::ContactList()
 		};
 
 		Edit::invoke_cb = Edit::undo_cb;
+
+
+		nde::project::snapshot::load_cb = Create::invoke_cb;
 	}
 }
 

@@ -3,4 +3,5 @@
 #include "project/instance.hh"
 #include "project/data.hh"
 #include "project/file.hh"
+#include "project/snapshot.hh"
 

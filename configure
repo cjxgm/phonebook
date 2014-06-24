@@ -12,7 +12,7 @@ my $CCFLAGS = "-std=gnu++11 -march=native -O3 -Wall -march=native";
 my $LDFLAGS = "";
 my $dest = "phonebook";
 my $test_arg = "";
-my @libs = qw(gtkmm-3.0);
+my @libs = qw(gtkmm-3.0 zlib);
 my %installs = (
 	"res/phonebook.desktop" => "/usr/share/applications"
 );
