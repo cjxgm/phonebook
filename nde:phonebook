@@ -29,3 +29,5 @@ edit 9 "eXerigumo Clanjor" "15900000000"
 undo
 undo
 edit 9 "eXerigumo Clanjor" "15900000000"
+remove 2
+undo
