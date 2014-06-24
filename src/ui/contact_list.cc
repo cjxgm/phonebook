@@ -9,9 +9,21 @@ bool ContactList::filter_func(Gtk::ListBoxRow* row)
 	return contact->find(key);
 }
 
+Contact* ContactList::create_contact(const string& name, const string& phone)
+{
+	auto con = new Contact{name, phone, sgroup};
+	con->show();
+
+	con->signal_remove().connect([=]() {
+		nde::action::remove(size_t(con->get_index()));
+	});
+
+	return con;
+}
+
 ContactList::ContactList()
 {
-	set_selection_mode(Gtk::SELECTION_SINGLE);
+	set_selection_mode(Gtk::SELECTION_NONE);
 	set_filter_func(mem_fun(*this, &ContactList::filter_func));
 
 	set_placeholder(label_empty);
@@ -21,14 +33,19 @@ ContactList::ContactList()
 	sgroup = Gtk::SizeGroup::create(Gtk::SIZE_GROUP_HORIZONTAL);
 
 	signal_row_activated().connect([&](Gtk::ListBoxRow* row) {
+		set_selection_mode(Gtk::SELECTION_SINGLE);
+
 		if (row == last_row) {
 			unselect_row();
 			last_row = nullptr;
 		}
-		else last_row = row;
+		else {
+			select_row(*row);
+			last_row = row;
+		}
 	});
 
-	signal_map().connect([&]() {
+	signal_realize().connect([&]() {
 		nde::init();
 	});
 
@@ -41,6 +58,8 @@ ContactList::ContactList()
 
 		Create::invoke_cb = [&](const string& name, const string& phone) {
 			cout << "invoked create: " << name << "    " << phone << endl;
+			auto con = create_contact(name, phone);
+			append(*con);
 		};
 
 		Remove::undo_cb = [&](size_t pos, const string& name, const string& phone) {
@@ -48,6 +67,7 @@ ContactList::ContactList()
 
 		Remove::invoke_cb = [&](size_t pos) {
 			cout << "invoked remove: " << pos << endl;
+			delete get_row_at_index(pos);
 		};
 	}
 }
@@ -55,14 +75,6 @@ ContactList::ContactList()
 void ContactList::add(const string& name, const string& phone)
 {
 	nde::action::create(name, phone);
-	Contact* con = new Contact{name, phone, sgroup};
-	con->show();
-	append(*con);
-
-	con->signal_remove().connect([=]() {
-		nde::action::remove(size_t(con->get_index()));
-		delete con;
-	});
 }
 
 void ContactList::search(const string& key)

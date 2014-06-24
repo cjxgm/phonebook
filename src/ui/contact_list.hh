@@ -15,6 +15,8 @@ class ContactList : public Gtk::ListBox
 	string key{};
 	bool filter_func(Gtk::ListBoxRow* row);
 
+	Contact* create_contact(const string& name, const string& phone);
+
 public:
 	ContactList();
 

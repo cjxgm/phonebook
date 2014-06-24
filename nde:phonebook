@@ -4,5 +4,11 @@ create "hello world" "33"
 create "\"yes\\\"" "33 44"
 remove 1
 remove 2
+create "hi" "345"
+remove 1
 remove 0
 remove 0
+create "asd" "23"
+create "bcj" "434"
+create "test" "12"
+remove 2
