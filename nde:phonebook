@@ -1,11 +1,31 @@
-create "cj\"x \\gm" "222"
-remove 0
-remove 1
-remove 0
+edit 2 "St\\ran\"ge Name\\\"\\\\" "+86 133 1234 4321"
+remove 14
+remove 17
+remove 17
 undo
+undo
+undo
+create "eXerigumo Clanjor" "15988410000"
+undo
+redo
+remove 5
+remove 5
+remove 5
+remove 9
+remove 9
+remove 10
+remove 3
+remove 4
+remove 11
+remove 8
+remove 3
 undo
 undo
 redo
-undo
 redo
+create "哆啦比猫/兰威举" "15988410000"
 undo
+edit 9 "eXerigumo Clanjor" "15900000000"
+undo
+undo
+edit 9 "eXerigumo Clanjor" "15900000000"
