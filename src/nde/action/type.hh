@@ -21,6 +21,9 @@ namespace nde
 			virtual void read(File& file) = 0;
 			virtual void write(File& file) = 0;
 
+			// only undo/redo can override this to "false"
+			virtual bool reset_pos() { return true; }
+
 			virtual ~Type() {}
 		};
 

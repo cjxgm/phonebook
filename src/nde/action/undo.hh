@@ -6,6 +6,34 @@ namespace nde
 {
 	namespace action
 	{
+		struct Undo: public Type
+		{
+			void undo(Datas& datas) override
+			{
+				project::instance()->redo(pos);
+			}
+
+			void invoke(Datas& datas) override
+			{
+				pos = project::instance()->undo(pos);
+			}
+
+			void read(File& file) override {}
+
+			void write(File& file) override
+			{
+				file.atom("undo");
+			}
+
+			bool reset_pos() override { return false; }
+
+			Undo() {}
+
+		private:
+			int pos{-1};
+		};
+
+		extern Wrapper<Undo> undo;
 	};
 };
 

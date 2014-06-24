@@ -1,4 +1,5 @@
 #include "main_window.hh"
+#include "../nde.hh"
 #include <iostream>
 using namespace std;
 
@@ -47,6 +48,9 @@ MainWindow::MainWindow()
 	clist.show();
 
 
+	add_events(Gdk::KEY_PRESS_MASK);
+
+
 	btn_add.signal_clicked().connect([&]() {
 		set_titlebar(ibar);
 		ibar.show();
@@ -70,7 +74,21 @@ MainWindow::MainWindow()
 		clist.search(key);
 	});
 
-	add_events(Gdk::KEY_PRESS_MASK);
+	clist.signal_update().connect([&]() {
+		auto proj = nde::project::instance();
+		btn_undo.set_sensitive(proj->undoable());
+		btn_redo.set_sensitive(proj->redoable());
+	});
+
+	btn_undo.signal_clicked().connect([&]() {
+		nde::action::undo();
+		clist.signal_update().emit();
+	});
+
+	btn_redo.signal_clicked().connect([&]() {
+		nde::action::redo();
+		clist.signal_update().emit();
+	});
 }
 
 bool MainWindow::on_key_press_event(GdkEventKey* ev)

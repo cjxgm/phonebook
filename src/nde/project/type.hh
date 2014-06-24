@@ -20,6 +20,7 @@ namespace nde
 			Datas datas{};
 			Actions actions{};
 			size_t action_pos{};
+			size_t undo_pos{};
 
 			File file{path::project()};
 
@@ -28,14 +29,11 @@ namespace nde
 
 			void append(Action* action, bool write=true);
 
-			inline bool undoable() { return (action_pos >            0  ); }
-			inline bool redoable() { return (action_pos < actions.size()); }
+			inline bool undoable() { return action_pos-undo_pos; }
+			inline bool redoable() { cout << undo_pos << endl; return undo_pos; }
 
-			void print()
-			{
-				for (auto& data: datas)
-					cout << data.name << " " << data.phone << endl;
-			}
+			size_t undo(int pos=-1);
+			size_t redo(int pos=-1);
 		};
 	};
 };

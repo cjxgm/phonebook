@@ -16,6 +16,7 @@ Contact* ContactList::create_contact(const string& name, const string& phone)
 
 	con->signal_remove().connect([=]() {
 		nde::action::remove(size_t(con->get_index()));
+		_signal_update.emit();
 	});
 
 	return con;
@@ -47,6 +48,7 @@ ContactList::ContactList()
 
 	signal_realize().connect([&]() {
 		nde::init();
+		_signal_update.emit();
 	});
 
 	// register nde callbacks
@@ -54,6 +56,9 @@ ContactList::ContactList()
 		using namespace nde::action;
 
 		Create::undo_cb = [&]() {
+			cout << "undo create" << endl;
+			size_t pos = get_children().size() - 1;
+			delete get_row_at_index(pos);
 		};
 
 		Create::invoke_cb = [&](const string& name, const string& phone) {
@@ -62,7 +67,11 @@ ContactList::ContactList()
 			append(*con);
 		};
 
+
 		Remove::undo_cb = [&](size_t pos, const string& name, const string& phone) {
+			cout << "undo remove: " << pos << "    " << name << "    " << phone << endl;
+			auto con = create_contact(name, phone);
+			insert(*con, pos);
 		};
 
 		Remove::invoke_cb = [&](size_t pos) {
@@ -75,6 +84,7 @@ ContactList::ContactList()
 void ContactList::add(const string& name, const string& phone)
 {
 	nde::action::create(name, phone);
+	_signal_update.emit();
 }
 
 void ContactList::search(const string& key)

@@ -17,7 +17,13 @@ class ContactList : public Gtk::ListBox
 
 	Contact* create_contact(const string& name, const string& phone);
 
+	using SignalUpdate = sigc::signal<void>;
+	SignalUpdate _signal_update;
+
 public:
+	// accessors
+	inline SignalUpdate& signal_update() { return _signal_update; }
+
 	ContactList();
 
 	using ListBox::add;	// suppress warnings of hiding virtual function

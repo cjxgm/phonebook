@@ -1,14 +1,172 @@
-create "asd" "123"
-create "asd" "234"
-create "hello world" "33"
-create "\"yes\\\"" "33 44"
-remove 1
-remove 2
-create "hi" "345"
-remove 1
+create "cjxgm" "1234"
+create "cscc" "3333"
+undo
+create "cccc" "4444"
+undo
+undo
+undo
+undo
+redo
+redo
+redo
+redo
+undo
+undo
+undo
+undo
+redo
+redo
+redo
+redo
+create "c" "123"
+undo
+undo
+undo
+undo
+undo
+undo
+undo
+undo
+undo
+undo
+undo
+undo
+undo
+undo
+undo
+undo
+undo
+undo
+undo
+undo
+undo
+redo
+redo
+redo
+redo
+redo
+redo
+redo
+redo
+redo
+redo
+redo
+redo
+redo
+redo
+redo
+redo
+redo
+redo
+redo
+redo
+redo
 remove 0
 remove 0
-create "asd" "23"
-create "bcj" "434"
-create "test" "12"
-remove 2
+remove 0
+undo
+undo
+undo
+redo
+redo
+redo
+undo
+undo
+undo
+redo
+redo
+redo
+undo
+undo
+undo
+redo
+redo
+redo
+undo
+undo
+undo
+redo
+undo
+redo
+redo
+redo
+undo
+undo
+undo
+undo
+undo
+undo
+undo
+undo
+undo
+undo
+undo
+undo
+undo
+undo
+undo
+undo
+undo
+undo
+undo
+undo
+undo
+undo
+undo
+undo
+undo
+undo
+undo
+undo
+undo
+undo
+undo
+undo
+undo
+undo
+undo
+undo
+undo
+undo
+undo
+undo
+undo
+undo
+undo
+undo
+undo
+undo
+undo
+undo
+undo
+undo
+redo
+redo
+redo
+redo
+redo
+redo
+undo
+create "yes" "444"
+undo
+undo
+undo
+undo
+undo
+undo
+undo
+redo
+redo
+redo
+redo
+redo
+redo
+redo
+undo
+undo
+undo
+undo
+redo
+redo
+redo
+redo
