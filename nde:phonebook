@@ -1,0 +1,11 @@
+create "cj\"x \\gm" "222"
+remove 0
+remove 1
+remove 0
+undo
+undo
+undo
+redo
+undo
+redo
+undo

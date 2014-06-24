@@ -1,4 +1,4 @@
 #pragma once
-#pragma clang system_header
+#pragma GCC system_header
 #include <gtkmm.h>
 

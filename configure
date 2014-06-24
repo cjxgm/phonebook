@@ -6,9 +6,9 @@
 
 
 
-my $CC = "clang++";
-my $LD = "clang++";
-my $CCFLAGS = "-std=gnu++11 -march=native -O3 -Wall -march=native";
+my $CC = "g++";
+my $LD = "g++";
+my $CCFLAGS = "-std=gnu++14 -march=native -O3 -Wall -march=native";
 my $LDFLAGS = "";
 my $dest = "phonebook";
 my $test_arg = "";
