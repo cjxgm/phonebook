@@ -78,6 +78,15 @@ ContactList::ContactList()
 			cout << "invoked remove: " << pos << endl;
 			delete get_row_at_index(pos);
 		};
+
+
+		Edit::undo_cb = [&](size_t pos, const string& name, const string& phone) {
+			auto row = get_row_at_index(pos);
+			auto con = dynamic_cast<Contact*>(row);
+			con->set(name, phone);
+		};
+
+		Edit::invoke_cb = Edit::undo_cb;
 	}
 }
 

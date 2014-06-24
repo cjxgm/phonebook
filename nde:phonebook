@@ -170,3 +170,14 @@ redo
 redo
 redo
 redo
+edit 0 "cjxgm2" "12345"
+undo
+redo
+undo
+redo
+undo
+undo
+undo
+redo
+redo
+redo

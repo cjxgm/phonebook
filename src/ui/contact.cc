@@ -1,4 +1,5 @@
 #include "contact.hh"
+#include "../nde.hh"
 #include <regex>
 #include <cstring>
 #include <iostream>
@@ -73,12 +74,11 @@ Contact::Contact(const string& name, const string& phone, SizeGroupPtr sgroup)
 	});
 
 	btn_del.signal_clicked().connect([&]() {
-		// TODO: do the removal on data
 		_signal_remove.emit();
 	});
 
 	ibar.signal_ok().connect([&](const string& name, const string& phone) {
-		set(name, phone);
+		nde::action::edit(size_t(get_index()), name, phone);
 		stack.set_transition_type(Gtk::STACK_TRANSITION_TYPE_UNDER_DOWN);
 		stack.set_visible_child("main");
 	});
