@@ -26,6 +26,7 @@ namespace nde
 
 		public:
 			void read();
+			void snapshot();
 
 			void append(Action* action, bool write=true);
 

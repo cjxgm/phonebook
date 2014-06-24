@@ -68,6 +68,11 @@ MainWindow::MainWindow()
 		sbar.set_search_mode(false);
 	});
 
+	btn_snapshot.signal_clicked().connect([&]() {
+		nde::project::instance()->snapshot();
+		clist.signal_update().emit();
+	});
+
 	ibar.signal_ok().connect([&](const string& name, const string& phone) {
 		ibar.hide();
 		set_titlebar(bar);

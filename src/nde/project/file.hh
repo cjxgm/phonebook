@@ -9,14 +9,19 @@ namespace nde
 	{
 		class File
 		{
+			string filename;
 			ifstream fin;
 			ofstream fout;
+
+			void open();
+			void close();
 
 		public:
 			File(const string& filename);
 
 			inline void flush() { fout.flush(); }
 			inline operator bool() { return fin; }
+			void reset();
 
 			// string io
 			string string_literal();

@@ -8,6 +8,7 @@ namespace nde
 	{
 		string root();
 		string project();
+		string snapshot();
 	};
 }
 

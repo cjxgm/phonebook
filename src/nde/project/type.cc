@@ -1,4 +1,5 @@
 #include "type.hh"
+#include "snapshot.hh"
 #include "../action/helper.hh"
 
 #include <iostream>
@@ -11,7 +12,21 @@ namespace nde
 	{
 		void Type::read()
 		{
+			snapshot::load(path::snapshot(), datas);
 			while (action::read(file)) {}
+		}
+
+		void Type::snapshot()
+		{
+			snapshot::save(path::snapshot(), datas);
+			file.reset();
+
+			// clear actions
+			for (auto action: actions)
+				delete action;
+			actions.clear();
+			action_pos = 0;
+			undo_pos = 0;
 		}
 
 		void Type::append(Action* action, bool write)

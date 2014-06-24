@@ -1,4 +1,5 @@
 #include "file.hh"
+#include <unistd.h>
 
 #include <iostream>
 using namespace std;
@@ -18,11 +19,31 @@ namespace nde
 {
 	namespace project
 	{
-		File::File(const string& filename)
-			: fin{filename, ios::in}, fout{filename, ios::app}
+		void File::open()
 		{
-			struct bad_filename {};
-			if (!fout.is_open()) throw bad_filename{};
+			struct bad_file {};
+			fin.open(filename, ios::in);
+			fout.open(filename, ios::app);
+			if (!fout.is_open()) throw bad_file{};
+		}
+
+		void File::close()
+		{
+			fin.close();
+			fout.close();
+		}
+
+		File::File(const string& filename)
+			: filename{filename}
+		{
+			open();
+		}
+
+		void File::reset()
+		{
+			close();
+			unlink(filename.c_str());
+			open();
 		}
 
 
