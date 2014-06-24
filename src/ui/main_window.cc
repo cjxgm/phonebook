@@ -22,18 +22,28 @@ MainWindow::MainWindow()
 
 	bar.pack_start(btn_add);
 	btn_add.set_image_from_icon_name("list-add");
+	btn_add.set_tooltip_text("add new contact.");
 	btn_add.show();
+
+	bar.pack_start(btn_snapshot);
+	btn_snapshot.set_image_from_icon_name("media-record");
+	btn_snapshot.set_tooltip_text(
+			"snapshot the current phonebook in order to reduce disk usage.\n"
+			"editing-history will be removed.");
+	btn_snapshot.show();
 
 	bar.pack_end(box_undo_redo);
 	box_undo_redo.show();
 
 	box_undo_redo.pack_end(btn_redo);
 	btn_redo.set_image_from_icon_name("edit-redo");
+	btn_redo.set_tooltip_text("redo last undid operation.");
 	btn_redo.set_sensitive(false);
 	btn_redo.show();
 
 	box_undo_redo.pack_end(btn_undo);
 	btn_undo.set_image_from_icon_name("edit-undo");
+	btn_undo.set_tooltip_text("undo last operation.");
 	btn_undo.set_sensitive(false);
 	btn_undo.show();
 

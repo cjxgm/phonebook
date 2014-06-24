@@ -42,9 +42,9 @@ Contact::Contact(const string& name, const string& phone, SizeGroupPtr sgroup)
 	box.pack_start(box_info, Gtk::PACK_EXPAND_PADDING);
 	box_info.show();
 
-	box.pack_start(btn_del, Gtk::PACK_SHRINK);
-	btn_del.show();
-	btn_del.get_style_context()->add_class("destructive-action");
+	box.pack_start(btn_remove, Gtk::PACK_SHRINK);
+	btn_remove.get_style_context()->add_class("destructive-action");
+	btn_remove.show();
 
 
 	box_info.pack_start(label_name, Gtk::PACK_SHRINK);
@@ -73,7 +73,7 @@ Contact::Contact(const string& name, const string& phone, SizeGroupPtr sgroup)
 		ibar.grab_focus(label_name.get_text(), label_phone.get_text());
 	});
 
-	btn_del.signal_clicked().connect([&]() {
+	btn_remove.signal_clicked().connect([&]() {
 		_signal_remove.emit();
 	});
 

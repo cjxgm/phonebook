@@ -17,7 +17,7 @@ class Contact: public Gtk::ListBoxRow
 	Gtk::Label label_name;
 	Gtk::Label label_phone;
 	Gtk::Button btn_edit{" edit "};
-	Gtk::Button btn_del{" remove "};
+	Gtk::Button btn_remove{" remove "};
 
 	using SizeGroupPtr = Glib::RefPtr<Gtk::SizeGroup>;
 	using SignalRemove = sigc::signal<void>;

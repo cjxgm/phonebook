@@ -181,3 +181,25 @@ undo
 redo
 redo
 redo
+create "44444x" "123"
+undo
+redo
+undo
+redo
+undo
+undo
+undo
+redo
+redo
+redo
+undo
+undo
+undo
+redo
+redo
+redo
+undo
+redo
+undo
+redo
+undo

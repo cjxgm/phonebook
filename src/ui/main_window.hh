@@ -10,6 +10,7 @@ class MainWindow : public Gtk::Window
 {
 	Gtk::HeaderBar bar{};
 	Gtk::Button btn_add{};
+	Gtk::Button btn_snapshot{};
 
 	Gtk::Box box_undo_redo{Gtk::ORIENTATION_HORIZONTAL, 0};
 	Gtk::Button btn_undo{};
