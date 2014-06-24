@@ -19,6 +19,8 @@ Contact* ContactList::create_contact(const string& name, const string& phone)
 		_signal_update.emit();
 	});
 
+	con->signal_update().connect(_signal_update);
+
 	return con;
 }
 

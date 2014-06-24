@@ -79,6 +79,7 @@ Contact::Contact(const string& name, const string& phone, SizeGroupPtr sgroup)
 
 	ibar.signal_ok().connect([&](const string& name, const string& phone) {
 		nde::action::edit(size_t(get_index()), name, phone);
+		_signal_update.emit();
 		stack.set_transition_type(Gtk::STACK_TRANSITION_TYPE_UNDER_DOWN);
 		stack.set_visible_child("main");
 	});

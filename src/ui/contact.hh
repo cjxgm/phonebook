@@ -21,12 +21,15 @@ class Contact: public Gtk::ListBoxRow
 
 	using SizeGroupPtr = Glib::RefPtr<Gtk::SizeGroup>;
 	using SignalRemove = sigc::signal<void>;
+	using SignalUpdate = sigc::signal<void>;
 	// void signal_remove_callback();
 	SignalRemove _signal_remove;
+	SignalUpdate _signal_update;
 
 public:
 	// accessors
 	inline SignalRemove& signal_remove() { return _signal_remove; }
+	inline SignalUpdate& signal_update() { return _signal_update; }
 
 	Contact(const string& name, const string& phone, SizeGroupPtr sgroup);
 	void set(const string& name, const string& phone);
