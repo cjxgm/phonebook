@@ -3,7 +3,6 @@
 #include "contact.hh"
 #include <string>
 #include <vector>
-#include <iostream>
 using namespace std;
 
 class ContactList : public Gtk::ListBox

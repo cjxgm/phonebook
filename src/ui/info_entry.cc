@@ -1,6 +1,4 @@
 #include "info_entry.hh"
-#include <iostream>
-using namespace std;
 
 
 bool InfoEntry::validate(const string& s)

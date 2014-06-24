@@ -2,7 +2,6 @@
 #include "gtkmm.hh"
 #include "contact_input_bar.hh"
 #include <string>
-#include <iostream>
 using namespace std;
 
 class Contact: public Gtk::ListBoxRow

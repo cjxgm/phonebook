@@ -1,5 +1,4 @@
 #include "contact_input_bar.hh"
-#include <iostream>
 #include <regex>
 using namespace std;
 

@@ -1,7 +1,5 @@
 #include "contact_list.hh"
 #include "../nde.hh"
-#include <iostream>
-using namespace std;
 
 bool ContactList::filter_func(Gtk::ListBoxRow* row)
 {
@@ -58,26 +56,22 @@ ContactList::ContactList()
 		using namespace nde::action;
 
 		Create::undo_cb = [&]() {
-			cout << "undo create" << endl;
 			size_t pos = get_children().size() - 1;
 			delete get_row_at_index(pos);
 		};
 
 		Create::invoke_cb = [&](const string& name, const string& phone) {
-			cout << "invoked create: " << name << "    " << phone << endl;
 			auto con = create_contact(name, phone);
 			append(*con);
 		};
 
 
 		Remove::undo_cb = [&](size_t pos, const string& name, const string& phone) {
-			cout << "undo remove: " << pos << "    " << name << "    " << phone << endl;
 			auto con = create_contact(name, phone);
 			insert(*con, pos);
 		};
 
 		Remove::invoke_cb = [&](size_t pos) {
-			cout << "invoked remove: " << pos << endl;
 			delete get_row_at_index(pos);
 		};
 

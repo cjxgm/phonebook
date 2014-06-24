@@ -2,10 +2,6 @@
 #include "snapshot.hh"
 #include "../action/helper.hh"
 
-#include <iostream>
-using namespace std;
-
-
 namespace nde
 {
 	namespace project

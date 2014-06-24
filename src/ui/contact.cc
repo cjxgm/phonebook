@@ -2,7 +2,6 @@
 #include "../nde.hh"
 #include <regex>
 #include <cstring>
-#include <iostream>
 using namespace std;
 
 // surround content with a tag

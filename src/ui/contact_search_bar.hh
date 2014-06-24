@@ -1,7 +1,6 @@
 #pragma once
 #include "gtkmm.hh"
 #include <string>
-#include <iostream>
 using namespace std;
 
 class ContactSearchBar : public Gtk::SearchBar

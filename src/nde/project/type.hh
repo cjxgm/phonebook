@@ -3,7 +3,6 @@
 #include "../path.hh"
 #include "data.hh"
 #include <vector>
-#include <iostream>
 using namespace std;
 
 namespace nde
@@ -31,7 +30,7 @@ namespace nde
 			void append(Action* action, bool write=true);
 
 			inline bool undoable() { return action_pos-undo_pos; }
-			inline bool redoable() { cout << undo_pos << endl; return undo_pos; }
+			inline bool redoable() { return undo_pos; }
 
 			size_t undo(int pos=-1);
 			size_t redo(int pos=-1);

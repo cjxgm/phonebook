@@ -1,6 +1,4 @@
 #include "contact_search_bar.hh"
-#include <iostream>
-using namespace std;
 
 ContactSearchBar::ContactSearchBar()
 {

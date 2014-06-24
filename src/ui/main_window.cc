@@ -1,7 +1,5 @@
 #include "main_window.hh"
 #include "../nde.hh"
-#include <iostream>
-using namespace std;
 
 
 MainWindow::MainWindow()
@@ -77,7 +75,6 @@ MainWindow::MainWindow()
 		ibar.hide();
 		set_titlebar(bar);
 		clist.add(name, phone);
-		cout << "+ " << name << " = " << phone << endl;	// TODO
 	});
 
 	ibar.signal_cancel().connect([&]() {

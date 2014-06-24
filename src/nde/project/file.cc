@@ -1,7 +1,5 @@
 #include "file.hh"
 #include <cstdio>
-
-#include <iostream>
 using namespace std;
 
 
