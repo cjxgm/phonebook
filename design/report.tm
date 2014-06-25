@@ -85,7 +85,7 @@
 
   <section|User Interaction Diagram>
 
-  The UX.
+  See <emp|Appendix A> for details.
 
   <chapter|Implementation>
 </body>
@@ -106,6 +106,7 @@
     <associate|auto-4|<tuple|1.1.2|5>>
     <associate|auto-5|<tuple|1.2|5>>
     <associate|auto-6|<tuple|2|7>>
+    <associate|auto-7|<tuple|2|7>>
   </collection>
 </references>
 
