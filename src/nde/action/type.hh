@@ -28,7 +28,7 @@ namespace nde
 			// only undo/redo can override this to "false"
 			virtual bool reset_pos() { return true; }
 
-			virtual ~Type() {}
+			virtual ~Type() = default;
 		};
 
 		extern nde::Factory<Type> factory;
